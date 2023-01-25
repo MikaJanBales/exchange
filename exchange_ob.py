@@ -18,9 +18,8 @@ async def binance_exchange(cur_pair):  # BTCUSDT
         # while True:
         res = await tscm.recv()
         res = float(res['w'])
-        # print(f"{res:0.2f}")
-        await [cur_pair, float(f"{res:0.2f}")]
-        await asyncio.sleep(4)
+        print(cur_pair, f"{res:0.1f}")
+        # await Currency.objects.get_or_create(pair_name=cur_pair, price=f"{res:0.2f}")
     await client.close_connection()
 
 
@@ -36,11 +35,12 @@ async def okx_exchange(uri, channels_0):
                     res = await asyncio.wait_for(ws.recv(), timeout=100)
                     res = eval(res)
                     if 'event' not in res:
-                        price_courses = res['data'][0][4]
-                        await [pair, price_courses]
+                        price_courses = res['data'][0][4][9]
+                        print(pair, price_courses)
+                        # await Currency.objects.get_or_create(pair_name=pair, price=price_courses)
                     else:
                         continue
-                    await asyncio.sleep(4)
+                    await asyncio.sleep(5)
         except Exception as e:
             await binance_exchange(pair)
             continue
