@@ -35,7 +35,7 @@ async def okx_exchange(uri, channels_0):
                     res = await asyncio.wait_for(ws.recv(), timeout=100)
                     res = eval(res)
                     if 'event' not in res:
-                        price_courses = res['data'][0][4][9]
+                        price_courses = res['data'][0][4]
                         print(pair, price_courses)
                         # await Currency.objects.get_or_create(pair_name=pair, price=price_courses)
                     else:
