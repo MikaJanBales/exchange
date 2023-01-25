@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:13-alpine
+
+    environment:
+      POSTGRES_USER: "fastapi_traefik"
+      POSTGRES_PASSWORD: "fastapi_traefik"
+      POSTGRES_DB: "fastapi_traefik"
+    ports:
+      - "5432:5432"
