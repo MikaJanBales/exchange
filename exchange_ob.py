@@ -15,7 +15,6 @@ async def binance_exchange(cur_pair):  # BTCUSDT
     sts = bm.symbol_ticker_socket(pair_for_binance)
 
     async with sts as tscm:
-        # while True:
         res = await tscm.recv()
         res = float(res['w'])
         print(cur_pair, f"{res:0.1f}")
@@ -45,25 +44,5 @@ async def okx_exchange(uri, channels_0):
             await binance_exchange(pair)
             continue
 
-
-# url = "wss://ws.okx.com:8443/ws/v5/public?brokerId=9999"
-
-# channels = [{"channel": "tickers", "instId": "EUR-USD-SWAP"}]
-# channels = [{"channel": "candle1m", "instId": "USDT-EUR"}]
-# channels = [{"channel": "trades", "instId": "USDT-EUR"}]
 # channels = [{"channel": "mark-price", "instId": "ETH-USD-SWAP"}]  # ETH-USD-SWAP
 # channels = [{"channel": "mark-price-candle1D", "instId": "BTC-USDT"}]
-# channels = [{"channel": "price-limit", "instId": "USDT-EUR-SWAP"}]
-# channels = [{"channel": "index-candle1m", "instId": "USDT-EUR"}]
-# channels = [{"channel": "index-tickers", "instId": "USDT-EUR"}]
-
-
-# loop = asyncio.get_event_loop()
-#
-# loop.run_until_complete(okx_exchange(url, channels))
-#
-# loop.close()
-
-# api_key = "a4918bd9-5733-4057-b76d-bb28c9ba2e1d"
-# secret_key = "48A80F86B5647D92973223B562621100"
-# passphrase = "FGmXGP43tcdGpCj_"
